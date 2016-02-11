@@ -1,0 +1,17 @@
+
+@import "bourbon";
+
+body {
+    background: #a4daf2 !important;	
+}
+.container{
+    width: 450px;
+}
+
+.msgbox{
+    margin-top: 10px;
+    width:420px;
+    height: 5px;
+    font-weight: bold;
+}
+
