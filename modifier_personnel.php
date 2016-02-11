@@ -5,7 +5,7 @@ include('header.php') ;
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Modifier Personnel</li>
+				<li class="active">Staff update</li>
 			</ol>
 		</div><!--/.row-->
 		
@@ -48,70 +48,68 @@ include('header.php') ;
 			$erreur = true ; 
 if( $controle->vide($_POST["poste"])) 
 {
-	$posteE=" * champ obligatoire";
+	$posteE=" * required";
 
 }	
 if( $controle->vide($_POST["date_n"])) 
 {
-	$date_nE=" * champ obligatoire";
+	$date_nE=" * required";
 
 }
 if( $controle->vide($_POST["adresse"])) 
 {
-	$adresseE=" * champ obligatoire";
+	$adresseE=" * required";
 
 }
 if( $controle->vide($_POST["ncin"])) 
 {
-	$ncinE=" * champ obligatoire";
+	$ncinE=" * required";
 }
-if( $controle->vide($_POST["date_n"])) 
+if( $controle->vide($_POST["date"])) 
 {
-	$dateE=" * champ obligatoire";
+	$dateE=" * required";
 }
 
 if( $controle->vide($_POST["email"])) 
 {
-	$emailE=" * champ obligatoire";
-}
-if( $controle->vide($_POST["salaire"])) 
-{
-	$salaireE=" * champ obligatoire";
+	$emailE=" * required";
 }
 if( $controle->vide($_POST["tel"])) 
 {
-	$telE=" * champ obligatoire";
+	$telE=" * required";
 }
 
 if( $controle->vide($_POST["nom"])) 
 {
-	$nomE=" * champ obligatoire";
+	$nomE=" * required";
 }
 if( $controle->vide($_POST["prenom"])) 
 {
-	$prenomE=" * champ obligatoire";
+	$prenomE=" * required";
 }
-if( $controle->vide($_POST["date_e"])) 
+if( $controle->vide($_POST["salaire"])) 
 {
-	$date_eE=" * champ obligatoire";
+	$salaireE=" * required";
 }
+
 if($controle->no_vide($_POST["email"]) && $controle->no_email($_POST['email']))
 {
-	$emailE="  Email incorrecte";
+	$emailE="  Incorrect email ";
 	$erreur = false ;
 }
 
 if($controle->no_vide($_POST["ncin"]) && $controle->noNCIN($_POST['ncin']))
 {
-	$ncinE="  NCIN incorrecte";
+	$ncinE="  Incorrect ID Card";
 	$erreur = false ;
 }
 if($controle->no_vide($_POST["tel"]) && $controle->noTEL($_POST['tel']))
 {
-	$telE="  Num tel incorrecte";
+	$telE="  Incorrect phone number";
 	$erreur = false ;
 }
-	
+
+
     		
 if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["ncin"],$_POST["email"],$_POST["tel"]) && ($erreur==true))
 {
@@ -141,7 +139,7 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
 		}}
 	?>	
  <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Nom</label>
+      <label for="firstname" class="col-sm-2 control-label">First name</label>
       <div class="col-sm-6">
          <input type="text" class="form-control" id="firstname" value="<?php echo $nom; ?>"  name="nom" placeholder="">
       <span class="error"><?php echo $nomE; ?></span>
@@ -150,7 +148,7 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
 	   </div>
 	  
 	   <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Prénom</label>
+      <label for="firstname" class="col-sm-2 control-label">Last name</label>
       <div class="col-sm-6">
          <input type="text" class="form-control" id="firstname" name="prenom" value="<?php echo $prenom; ?>" placeholder="">
       <span class="error"><?php echo $prenomE;?></span>
@@ -158,14 +156,14 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
 	   </div>
 	   
 	   <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Date de naissance : </label>
+      <label for="firstname" class="col-sm-2 control-label">Date of birth : </label>
       <div class="col-sm-6">
          <input type="text" class="form-control" id="calendar1" name="date_n" value="<?php echo $date_n; ?>" placeholder="">
       <span class="error"><?php echo $date_nE;?></span>
 	  </div>
 	   </div>
 	    <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Adresse </label>
+      <label for="firstname" class="col-sm-2 control-label">Adress </label>
       <div class="col-sm-6">
          <input type="text" class="form-control" id="firstname" name="adresse" value="<?php echo $adresse; ?>" placeholder="">
       <span class="error"><?php echo $adresseE; ?>
@@ -174,7 +172,7 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
 	  </div>
 	   </div>
 	   <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">NCIN</label>
+      <label for="firstname" class="col-sm-2 control-label">ID Card</label>
       <div class="col-sm-6">
          <input type="text" class="form-control" id="firstname" value="<?php echo $ncin; ?>" name="ncin" placeholder="">
       <span class="error"><?php echo $ncinE;?></span>
@@ -182,14 +180,14 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
 	   </div>
 	   
 	   <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Teléphone</label>
+      <label for="firstname" class="col-sm-2 control-label">Pone number</label>
       <div class="col-sm-6">
          <input type="text" class="form-control" id="firstname" value="<?php echo $tel; ?>" name="tel" placeholder="">
       <span class="error"><?php echo $telE;?></span>
 	  </div>
 	   </div>
 	    <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Date d'emboche</label>
+      <label for="firstname" class="col-sm-2 control-label">Hiring date</label>
       <div class="col-sm-6">
          <input type="text" class="form-control" id="calendar" value="<?php echo $date_e; ?>" name="date_e" placeholder="">
       <span class="error"><?php echo $date_eE;?></span>
@@ -204,7 +202,7 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
 	   </div>
     
 	   <div class="form-group">
-      <label class="col-sm-2 control-label">Contrat</label>
+      <label class="col-sm-2 control-label">Contract type</label>
 	  <div class="col-sm-6">
 	    <?php 
 		$per->check_contrat($contrat);
@@ -213,7 +211,7 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
    </div>
    </div>
   <div class="form-group">
-      <label class="col-sm-2 control-label">Niveau d'étude</label>
+      <label class="col-sm-2 control-label">Study level</label>
 	  <div class="col-sm-6">
 	    <?php 
 		$per->check_etude($etude);
@@ -222,16 +220,16 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
    </div>
    </div>
 	   <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Poste</label>
+      <label for="firstname" class="col-sm-2 control-label">Work position</label>
       <div class="col-sm-6">
          <input type="text" class="form-control" value="<?php echo $poste; ?>" id="firstname" name="poste" placeholder="">
      <span class="error"><?php echo $posteE;?></span>
 	 </div>
 	   </div>
 	    <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Salaire en DT</label>
+      <label for="firstname" class="col-sm-2 control-label">Salary (DT)</label>
       <div class="col-sm-6">
-         <input type="number" class="form-control" value="<?php echo $salaire; ?>" id="firstname" name="salaire" placeholder="">
+         <input type="number" class="form-control" value="<?php echo $salaire; ?>" id="firstname" name="salaire" placeholder="" >
      <span class="error"><?php echo $salaireE;?></span>
 	 </div>
 	   </div>

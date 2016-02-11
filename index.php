@@ -6,7 +6,7 @@ require_once("class/class.php");
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>G.R.H</title>
+        <title>G-Human</title>
         <link rel="icon" href="img/logo.ico">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/styles.css" rel="stylesheet">
@@ -57,7 +57,7 @@ require_once("class/class.php");
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="submit" id="login-submit"  class="btn btn-lg btn-primary btn-block" value="Connecter">
+                                                <input type="submit" id="login-submit"  class="btn btn-lg btn-primary btn-block" value="Log In">
                                                
                                                 <div id="msgbox" class="msgbox">
 
@@ -72,7 +72,7 @@ require_once("class/class.php");
                     </div>
                     <div class="panel-footer ">
                         <center>
-                            AdibDev 2015
+                            AdibDev 2016
                         </center>
                     </div>
                 </div>

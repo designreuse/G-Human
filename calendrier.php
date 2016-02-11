@@ -5,7 +5,7 @@ include('header.php') ;
     <div class="row">
         <ol class="breadcrumb">
             <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="active">Calendrier de travail</li>
+            <li class="active">Clendar</li>
         </ol>
     </div><!--/.row-->
     
@@ -21,12 +21,12 @@ include('header.php') ;
 
     <div class="row">
         <div class="col-sm-6 col-sm-offset-2">
-        <button class="btn btn-primary btn-block" id="jt">Enrégistre un jour de travail</button>
+        <button class="btn btn-primary btn-block" id="jt">Recorded a workday</button>
         </div>
     </div>
         <div class='alert alert-success' id="alerti">
   
-   Jour de travail enrégistrer avec succées</div>
+   workday successfully registered</div>
     <br>
     <div class="row">
         <form class="form-horizontal" id="recherche" role="form" method="post">
@@ -36,18 +36,18 @@ include('header.php') ;
                 <div class="col-sm-3">
                     <select class="form-control" name="mois" id="moisid">
                         <option selected value="">Mois</option>
-                        <option value="01">Janvier</option>
-                        <option value="02">Février</option>
-                        <option value="03">Mars</option>
-                        <option value="04">Avril</option>
-                        <option value="05">Mai</option>
-                        <option value="06">Juin</option>
-                        <option value="07">Juillet</option>
-                        <option value="08">Aout</option>
-                        <option value="09">Septembre</option>
-                        <option value="10">Octobre</option>
-                        <option value="11">Novembre</option>
-                        <option value="12">Décembre</option>
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">Décember</option>
                     </select>
                 </div>
                 <div class="col-sm-3">
@@ -170,7 +170,7 @@ include('header.php') ;
          
           
          if(mois=="" || annes== ""){
-             alert ("Vueillez choisire le mois et l'années ") ; 
+             alert ("Please select the month and the year ") ; 
          }else {
              load = "<div class='loading' id='load'> <img src='img/load.GIF' class='load-img'></div>"; 
     $("#cal-lis").html(load) ; 

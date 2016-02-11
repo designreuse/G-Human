@@ -5,7 +5,7 @@ include('header.php') ;
     <div class="row">
         <ol class="breadcrumb">
             <li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="active">Consulter personnel</li>
+            <li class="active">Staff consulting</li>
         </ol>
     </div><!--/.row-->
     <br>
@@ -33,7 +33,7 @@ include('header.php') ;
         <table class="table table-responsive table-bordered table-hover">
             <tr>
                 <td>
-                    Matricule :  
+                    Registration number :  
                 </td>
                 <td>
     <?php echo $row['id_personnel']; ?>
@@ -42,7 +42,7 @@ include('header.php') ;
 
             <tr>
                 <td>
-                    Nom : 
+                    First name : 
                 </td>
                 <td>
     <?php echo $row['nom']; ?>	
@@ -50,7 +50,7 @@ include('header.php') ;
             </tr>
             <tr>
                 <td>	
-                    Prénom :
+                    Last name :
                 </td>
                 <td>
     <?php echo $row['prenom']; ?>
@@ -58,7 +58,7 @@ include('header.php') ;
             </tr>  
             <tr>
                 <td>
-                    NCIN :
+                    ID Card :
                 </td>
                 <td>
     <?php echo $row['ncin']; ?>	
@@ -66,7 +66,7 @@ include('header.php') ;
             </tr>
             <tr>
                 <td>
-                    Date de naissance :
+                    Date of birth :
                 </td>
                 <td>
     <?php echo $row['date_n']; ?>	
@@ -74,7 +74,7 @@ include('header.php') ;
             </tr>
             <tr>
                 <td>
-                    Adresse :
+                    Adress :
                 </td>
                 <td>
     <?php echo $row['adresse']; ?>	
@@ -90,7 +90,7 @@ include('header.php') ;
             </tr>
             <tr>
                 <td>
-                    Telephone :
+                    Phone number :
                 </td> 
                 <td>
     <?php echo $row['tel']; ?>	
@@ -98,7 +98,7 @@ include('header.php') ;
             </tr>
             <tr>
                 <td>
-                    Niveau d'étude :
+                    Study level :
                 </td> 
                 <td>
     <?php echo $row['etude']; ?>	
@@ -106,7 +106,7 @@ include('header.php') ;
             </tr>
             <tr>
                 <td>
-                    Poste : 
+                    Work position : 
                 </td>
                 <td>
     <?php echo $row['poste']; ?>	
@@ -115,7 +115,7 @@ include('header.php') ;
             <tr>
             <tr>
                 <td>
-                    Date d'embauche : 
+                    Hiring date : 
                 </td>
                 <td>
     <?php echo $row['date']; ?>	
@@ -123,7 +123,7 @@ include('header.php') ;
             </tr>
             <tr>
                 <td>
-                    Type de contrat : 
+                    Type of Contract : 
                 </td>
                 <td>
     <?php echo $row['contrat']; ?>	
@@ -131,7 +131,7 @@ include('header.php') ;
             </tr>
             <tr>
                 <td>
-                    Salaire en DT : 
+                    Salary (DT) : 
                 </td>
                 <td>
     <?php echo $row['salaire']; ?>	

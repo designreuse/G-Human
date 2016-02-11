@@ -6,7 +6,7 @@ include('header.php') ;
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Pointage personnel</li>
+				<li class="active">Time clock</li>
 			</ol>
 		</div><!--/.row-->
 		
@@ -27,7 +27,7 @@ include('header.php') ;
  <br>
 		 <form class="form-horizontal" id="recherche" role="form" method="post">
 		<div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Chercher personnel</label>
+      <label for="firstname" class="col-sm-2 control-label">Staff search</label>
       <div class="col-sm-9">
          <input type="text" class="form-control" id="personnel" name="personnel" placeholder="">
       <span class="error"></span>
@@ -43,14 +43,12 @@ include('header.php') ;
 		<table class="table table-responsive table-bordered table-hover" id="tab_s">
 		<thead>
 		<tr>
-		<th>Matricule</th><th>Nom & Prenom</th><th>Poste</th><th></th> <th></th> 
-		</tr>
+		<th>Registration number</th><th>Name</th><th>Work position</th></th><th></th> <th></th>
+		
+                </tr>
 		</thead>
 		<tbody>
 		<?php
-			
-		
-
 		$per->liste_personnel_pointage();
 		?>
 		</tbody>

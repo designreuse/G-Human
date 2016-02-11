@@ -1,19 +1,47 @@
 <?php 
 include('header.php') ;
-?>	
-	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
+?>
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Add Staff</li>
+				<li class="active">Staff update</li>
 			</ol>
 		</div><!--/.row-->
 		
-		<br>
-		<form class="form-horizontal" role="form" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+		
+		<?php 
+		$id_g = $_GET['id'];
+		$liste = $per->select_personnel($id_g);
+		
+		foreach($liste as $row)
+		{
+			$contrat = $row['contrat'];
+			$nom = $row['nom'];
+			$prenom = $row['prenom'];
+			$poste = $row['poste'];
+			$email = $row['email'];
+			$tel = $row['tel'];
+			$ncin = $row['ncin'];
+                        $date_n = $row['date_n'];
+                        $adresse = $row['adresse'];
+                        $date_e = $row['date'];
+                        
+                        $etude = $row['etude'];
+			$id_per = $row['id_personnel'];
+			$salaire = $row['salaire'];
+		}
+		
+		?>
+		<br><br>
+		
+		
+		<form class="form-horizontal" role="form" method="post" action="<?php echo $_SERVER['PHP_SELF']."?id=".$_GET['id']; ?>">
+ 
+  <input type="hidden" name="id_personnel" value="<?php echo $id_per; ?>">
  <?php
  
- $posteE=$ncinE=$emailE=$telE=$nomE=$prenomE=$dateE=$date_nE=$adresseE=$salaireE="";
+ $posteE=$ncinE=$emailE=$telE=$nomE=$prenomE=$dateE=$date_nE=$date_eE=$adresseE=$salaireE="";
  
 	 if ($_SERVER["REQUEST_METHOD"] == "POST") 
 		{
@@ -82,8 +110,9 @@ if($controle->no_vide($_POST["tel"]) && $controle->noTEL($_POST['tel']))
 }
 
 
+    		
 if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["ncin"],$_POST["email"],$_POST["tel"]) && ($erreur==true))
-{		
+{
 
 			$poste = htmlentities($_POST['poste']);
 			$ncin =  htmlentities($_POST['ncin']);
@@ -92,18 +121,19 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
 			$nom =   htmlentities($_POST['nom']);
 			$prenom =htmlentities($_POST['prenom']);
 			$contrat=htmlentities($_POST['contrat']);
-			$date =  htmlentities($_POST['date']);
+			$date =  htmlentities($_POST['date_n']);
                         $niveau= htmlentities($_POST['niveau']);
 			$date_n= htmlentities($_POST['date_n']);
                         $adresse=htmlentities($_POST['adresse']);
-			$salaire=htmlentities($_POST['salaire']);
+                        $salaire=htmlentities($_POST['salaire']);
+			$id_p =  htmlentities($_POST['id_personnel']);
 			
-			
-			$ajout=$per->ajouter_personnel($poste,$ncin,$email,$tel,$nom,$prenom,$contrat,$niveau,$date,$date_n,$adresse,$salaire);
-			
-			if($ajout)
+			 
+		
+			$update = $per->modifier_personnel($id_p,$poste,$ncin,$email,$tel,$nom,$prenom,$contrat,$date_n,$adresse,$etude,$salaire);
+			if($update)
 			{
-				$link='liste_personnel.php?message=add';
+				$link='consulter_personnel.php?message=update&id='.$id_p;
 				$user->location($link);
 			}
 		}}
@@ -111,114 +141,103 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
  <div class="form-group">
       <label for="firstname" class="col-sm-2 control-label">First name</label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="firstname" name="nom" placeholder="">
-      <span class="error"><?php echo $nomE;?></span>
+         <input type="text" class="form-control" id="firstname" value="<?php echo $nom; ?>"  name="nom" placeholder="">
+      <span class="error"><?php echo $nomE; ?></span>
+   
+	  </div>
+	   </div>
+	  
+	   <div class="form-group">
+      <label for="firstname" class="col-sm-2 control-label">Last name</label>
+      <div class="col-sm-6">
+         <input type="text" class="form-control" id="firstname" name="prenom" value="<?php echo $prenom; ?>" placeholder="">
+      <span class="error"><?php echo $prenomE;?></span>
 	  </div>
 	   </div>
 	   
 	   <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Last name</label>
-      <div class="col-sm-6">
-         <input type="text" class="form-control" id="firstname" name="prenom" placeholder="">
-      <span class="error"><?php echo $prenomE;?></span>
-	  </div>
-	   </div>
-	   <div class="form-group">
       <label for="firstname" class="col-sm-2 control-label">Date of birth : </label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="calendar" name="date_n" placeholder="">
-     <span class="error"><?php echo $date_nE;?></span>
-	 </div>
+         <input type="text" class="form-control" id="calendar1" name="date_n" value="<?php echo $date_n; ?>" placeholder="">
+      <span class="error"><?php echo $date_nE;?></span>
+	  </div>
 	   </div>
-        <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Adress : </label>
+	    <div class="form-group">
+      <label for="firstname" class="col-sm-2 control-label">Adress </label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="firstname" name="adresse" placeholder="">
-     <span class="error"><?php echo $adresseE;?></span>
-	 </div>
+         <input type="text" class="form-control" id="firstname" name="adresse" value="<?php echo $adresse; ?>" placeholder="">
+      <span class="error"><?php echo $adresseE; ?>
+      
+      </span>
+	  </div>
 	   </div>
 	   <div class="form-group">
       <label for="firstname" class="col-sm-2 control-label">ID Card</label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="firstname" name="ncin" placeholder="">
+         <input type="text" class="form-control" id="firstname" value="<?php echo $ncin; ?>" name="ncin" placeholder="">
       <span class="error"><?php echo $ncinE;?></span>
 	  </div>
 	   </div>
 	   
 	   <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Phone number</label>
+      <label for="firstname" class="col-sm-2 control-label">Pone number</label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="firstname" name="tel" placeholder="">
+         <input type="text" class="form-control" id="firstname" value="<?php echo $tel; ?>" name="tel" placeholder="">
       <span class="error"><?php echo $telE;?></span>
 	  </div>
 	   </div>
-	   
-	   <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">E-MAIL</label>
+	    <div class="form-group">
+      <label for="firstname" class="col-sm-2 control-label">Hiring date</label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="firstname" name="email" placeholder="">
-      <span class="error"><?php echo $emailE;?></span>
+         <input type="text" class="form-control" id="calendar" value="<?php echo $date_e; ?>" name="date_e" placeholder="">
+      <span class="error"><?php echo $date_eE;?></span>
 	  </div>
 	   </div>
 	   <div class="form-group">
+      <label for="firstname" class="col-sm-2 control-label">E-MAIL</label>
+      <div class="col-sm-6">
+         <input type="text" class="form-control" id="firstname" value="<?php echo $email; ?>"  name="email" placeholder="">
+      <span class="error"><?php echo $emailE;?></span>
+	  </div>
+	   </div>
+    
+	   <div class="form-group">
       <label class="col-sm-2 control-label">Contract type</label>
 	  <div class="col-sm-6">
-              <select class='form-control' name='contrat'>
-                  <option value="SIVP">SIVP</option>
-                  <option value="CDD">CDD</option>
-                  <option value="CDI">CDI</option>
-              </select>
+	    <?php 
+		$per->check_contrat($contrat);
+		?>
+    
    </div>
    </div>
   <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Study level</label>
-      <div class="col-sm-6">
-          <select name="niveau" class="form-control">
-              <option value="Doctorat">Doctorat</option>
-              <option value="Mastére ">Mastére</option>
-              <option value="Ingéniera">Ingéniera</option>
-              <option value="Licence fendamentale">Licence fendamentale</option>
-              <option value="Licence appliquée">Licence appliquée</option>
-              
-              <option value="Technicien supérieur">Technicien supérieur</option>
-              <option value="Technicien">Technicien</option>
-              
-              <option value="Baccalauréat +2">Baccalauréat +2</option>
-              <option value="Baccalauréat +1">Baccalauréat +1</option>
-              <option value="Baccalauréat">Baccalauréat</option>
-              <option value="Secondaire">Secondaire</option>
-              <option value="Primaire">Primaire</option>
-              
-          </select>
-	 </div>
-	   </div>
-                     <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Hiring date</label>
-      <div class="col-sm-6">
-         <input type="text" class="form-control" id="calendar1" name="date" placeholder="">
-        
-     <span class="error"><?php echo $dateE;?></span>
-	 </div>
-	   </div>
+      <label class="col-sm-2 control-label">Study level</label>
+	  <div class="col-sm-6">
+	    <?php 
+		$per->check_etude($etude);
+		?>
+    
+   </div>
+   </div>
 	   <div class="form-group">
       <label for="firstname" class="col-sm-2 control-label">Work position</label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="firstname" name="poste" placeholder="">
+         <input type="text" class="form-control" value="<?php echo $poste; ?>" id="firstname" name="poste" placeholder="">
      <span class="error"><?php echo $posteE;?></span>
 	 </div>
 	   </div>
-	   <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Salary</label>
+	    <div class="form-group">
+      <label for="firstname" class="col-sm-2 control-label">Salary (DT)</label>
       <div class="col-sm-6">
-         <input type="number" class="form-control" id="firstname" name="salaire" placeholder="">
+          <input type="number" class="form-control" value="<?php echo $salaire; ?>" id="firstname" name="salaire" placeholder="" >
      <span class="error"><?php echo $salaireE;?></span>
 	 </div>
 	   </div>
 	    
-	   <br>
+	   <br><br>
 	    <div class="form-group">
-      <label class="col-sm-7 control-label"></label>
-	  <input type="submit" value="Ajouter" class="btn btn-primary">
+      <label class="col-sm-2 control-label"></label>
+	  <input type="submit" value="Modifier" class="btn btn-primary" >
 	
    </div>
    
@@ -229,14 +248,10 @@ if($controle->no_vide($_POST["prenom"],$_POST["nom"],$_POST["poste"],$_POST["nci
 	<script src="js/jquery-1.11.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
-	<script>
-		$('#calendar').datepicker({
-                });
-		
-                $('#calendar1').datepicker({
-		});
-
-	</script>
+        <script>
+            $('#calendar').datepicker({});
+            $('#calendar1').datepicker({});
+        </script>
 </body>
 
 </html>

@@ -5,7 +5,7 @@ include('header.php') ;
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Liste salaire</li>
+				<li class="active">Salary management</li>
 			</ol>
 		</div><!--/.row-->
 		
@@ -26,7 +26,7 @@ include('header.php') ;
  <br>
 		 <form class="form-horizontal" id="recherche" role="form" method="post">
 		<div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Chercher personnel</label>
+      <label for="firstname" class="col-sm-2 control-label">Staff search</label>
       <div class="col-sm-9">
          <input type="text" class="form-control" id="personnel" name="personnel" placeholder="">
       <span class="error"></span>
@@ -42,7 +42,7 @@ include('header.php') ;
 		<table class="table table-responsive table-bordered table-hover" id="tab_s">
 		<thead>
 		<tr>
-		<th>Matricule</th><th>Nom & Prenom</th><th>Salaire en DT</th><th></th> 
+		<th>Registration number</th><th>Name</th><th>Salary (DT)</th><th></th> 
 		</tr>
 		</thead>
 		<tbody>
@@ -64,12 +64,13 @@ include('header.php') ;
         $("#tab_s").show();
 	$("#personnel").keyup(function(){
 	  var formData=$("#recherche").serialize();
-	
+	load = "<div class='loading' id='load'> <img src='img/load.GIF' class='load-img'></div>"; 
+  $("#affichage").html(load);
 	var personnel = $("#personnel").val();
        
 	$.ajax({
 		type: "POST",
-		url: "chercher_pointage.php",
+		url: "chercher_salaire.php",
 		cache:false,
 		data: formData,
 		success:onSucces,

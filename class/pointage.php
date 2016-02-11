@@ -18,25 +18,25 @@ class pointage {
     public function day($day) {
         switch ($day) {
             case "Monday":
-                $day = "Lundi";
+                $day = "Monday";
                 break;
             case "Tuesday":
-                $day = "Mardi";
+                $day = "Tuesday";
                 break;
             case "Wednesday":
-                $day = "Mercredi";
+                $day = "Wednesday";
                 break;
             case "Thursday":
-                $day = "Jeudi";
+                $day = "Thursday";
                 break;
             case "Friday":
-                $day = "Vendredi";
+                $day = "Friday";
                 break;
             case "Saturday":
-                $day = "Samedi";
+                $day = "Saturday";
                 break;
             case "Sunday":
-                $day = "Dimanche";
+                $day = "Sunday";
                 ;
                 break;
         }
@@ -253,7 +253,7 @@ class pointage {
                 $total_jour++;
                 echo "<td><img src='img/oui.png' width='30' height='30'></img></td>";
             } else {
-                if ($day == "Dimanche") {
+                if ($day == "Sunday") {
                     echo "<td class='np'></td>";
                 } else {
                     if ($i > $max) {
@@ -382,7 +382,7 @@ class pointage {
         echo "  <table class='table table-responsive table-bordered'>
         <thead>
             <tr>
-                <th>Jour</th><th>Date</th><th>Jour de travail</th>
+                <th>Day</th><th>Date</th><th>Workday</th>
             </tr>
         </thead>
         <tbody>";
@@ -424,7 +424,7 @@ class pointage {
             echo $date;
             echo "</td>";
 
-            if ($day == "Dimanche") {
+            if ($day == "Sunday") {
                 echo "<td class='np'></td>";
             } else {
                 if ($i <= $this->jour) {
@@ -474,7 +474,7 @@ class pointage {
             echo "  <table class='table table-responsive table-bordered'>
         <thead>
             <tr>
-                <th>Jour</th><th>Date</th><th>Jour de travail</th>
+                <th>Day</th><th>Date</th><th>Workday</th>
             </tr>
         </thead>
         <tbody>";
@@ -520,7 +520,7 @@ class pointage {
                 echo $date;
                 echo "</td>";
 
-                if ($day == "Dimanche") {
+                if ($day == "Sunday") {
                     echo "<td class='np'></td>";
                 } else {
 
@@ -562,10 +562,10 @@ class pointage {
         $day = date("l", strtotime($now));
         $day = $this->day($day);
 
+         $NomDuMois = array('01' =>"January",'02' => "February",'03' => "March",'04' => "April",
+            '05' => "May", '06' => "June",'07' => "July",'08' => "August",'09' => "September",'10' => "October",'11' => "November",'12' => "December");
 
-        $NomDuMois = array('01' => "janvier", '02' => "février", '03' => "mars", '04' => "avril",
-            '05' => "mai", '06' => "juin", '07' => "juillet", '08' => "août", '09' => "septembre", '10' => "octobre", '11' => "novembre", '12' => "décembre");
-
+        
         echo $day . " " . $jour . " " . $NomDuMois[$mois] . " " . $annes;
     }
 

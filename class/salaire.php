@@ -34,7 +34,7 @@ class salaire
                 echo "</td>";
             
                 echo "<td>";
-                echo "<a href='modifier_personnel.php?id=$id_personnel'>";
+                echo "<a href='modifier_salaire.php?id=$id_personnel'>";
                 echo " <img src='img/modif.jpg' width='30' height='30'></img> </a>";
                 echo "</td>";
               

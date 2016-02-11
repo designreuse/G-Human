@@ -201,17 +201,17 @@ class personnel {
 
                     if (($this->now > $fin) && ($this->now < $debut)) {
                         echo "<td>";
-                        echo "Disponible";
+                        echo "Available";
                         echo "</td>";
                     } else {
                         echo "<td>";
-                        echo "En congé";
+                        echo "On leave";
                         echo "</td>";
                     }
                 }
                 if ($c == 0) {
                     echo "<td>";
-                    echo "Disponible";
+                    echo "Available";
                     echo "</td>";
                 }
                 echo "<td>";
@@ -284,17 +284,17 @@ class personnel {
 
                     if (($this->now > $fin) && ($this->now < $debut)) {
                         echo "<td>";
-                        echo "Disponible";
+                        echo "Available";
                         echo "</td>";
                     } else {
                         echo "<td>";
-                        echo "En congé";
+                        echo "On leave";
                         echo "</td>";
                     }
                 }
                 if ($c == 0) {
                     echo "<td>";
-                    echo "Disponible";
+                    echo "Available";
                     echo "</td>";
                 }
                 echo "<td>";
@@ -323,8 +323,9 @@ class personnel {
             echo"<table class='table table-responsive table-bordered table-hover'>";
             echo "<thead>
 		<tr>
-		<th>Matricule </th><th>Nom & Prenom</th><th>Poste</th><th></th><th></th><th></th><th></th> 
-		</tr>
+		<th>Registration number</th><th>Name</th><th>Work position</th><th></th><th></th><th></th><th></th> 
+		
+                </tr>
 		</tr>
 		</thead>";
             while ($donnees = $select->fetch(PDO::FETCH_OBJ)) {
@@ -366,7 +367,7 @@ class personnel {
             }
             echo "</table>";
         } else {
-            echo "<br><br><center><h3>Aucun résultat</center></h3>";
+            echo "<br><br><center><h3>No result</center></h3>";
         }
     }
 
@@ -385,7 +386,8 @@ class personnel {
             echo"<table class='table table-responsive table-bordered table-hover'>";
             echo "<thead>
 		<tr>
-		<th>Matricule </th><th>Nom & Prenom</th><th>Poste</th><th>
+                <th>Registration number</th><th>Name</th><th>Work position</th><th></th><th></th><th></th><th></th> 
+		
 		</tr>
 		</thead>";
             while ($donnees = $select->fetch(PDO::FETCH_OBJ)) {
@@ -416,7 +418,7 @@ class personnel {
             }
             echo "</table>";
         } else {
-            echo "<br><br><center><h3>Aucun résultat</center></h3>";
+            echo "<br><br><center><h3>No result</center></h3>";
         }
     }
 
@@ -429,7 +431,7 @@ class personnel {
             echo"<table class='table table-responsive table-bordered table-hover'>";
             echo "<thead>
 		<tr>
-		<th>Matricule </th><th>Nom & Prenom</th><th>Poste</th><th></th><th></th>
+		<th>Registration number</th><th>Name</th><th>Work position</th><th></th><th></th>
 		</tr>
 		</thead>";
             while ($donnees = $select->fetch(PDO::FETCH_OBJ)) {
@@ -482,7 +484,7 @@ class personnel {
             }
             echo "</table>";
         } else {
-            echo "<br><br><center><h3>Aucun résultat</center></h3>";
+            echo "<br><br><center><h3>No result</center></h3>";
         }
     }
 
@@ -495,8 +497,7 @@ class personnel {
             echo"<table class='table table-responsive table-bordered table-hover'>";
             echo "<thead>
 		<tr>
-		<th>Matricule </th><th>Nom & Prenom</th><th>Poste</th><th></th><th>
-		</tr>
+		<th>Registration number</th><th>Name</th><th>Work position</th></th><th></th> <th></th></tr>
 		</thead>";
             while ($donnees = $select->fetch(PDO::FETCH_OBJ)) {
                 $id_personnel = $donnees->id_personnel;
@@ -525,17 +526,17 @@ class personnel {
 
                         if (($this->now > $fin) && ($this->now < $debut)) {
                             echo "<td>";
-                            echo "Disponible";
+                            echo "Available";
                             echo "</td>";
                         } else {
                             echo "<td>";
-                            echo "En congé";
+                            echo "On leave";
                             echo "</td>";
                         }
                     }
                     if ($c == 0) {
                         echo "<td>";
-                        echo "Disponible";
+                        echo "Available";
                         echo "</td>";
                     }
                     echo "<td>";
@@ -548,10 +549,54 @@ class personnel {
             }
             echo "</table>";
         } else {
-            echo "<br><br><center><h3>Aucun résultat</center></h3>";
+            echo "<br><br><center><h3>No result</center></h3>";
         }
     }
+    
+     public function chercher_personnel_salaire($personnel) {
 
+
+        $select = DataBase::connect()->query("select * from personnel  where archive like '0' and (nom like '%$personnel%' or np like '%$personnel%' or prenom like '%$personnel%' or id_personnel='$personnel' or ncin like '%$personnel%')  ");
+        if ($select->rowcount() > 0) {
+
+            echo"<table class='table table-responsive table-bordered table-hover'>";
+            echo "<thead>
+		<tr>
+		<th>Registration number</th><th>Name</th><th>Salary (DT)</th><th></th> </thead>";
+            while ($donnees = $select->fetch(PDO::FETCH_OBJ)) {
+                $id_personnel = $donnees->id_personnel;
+
+                $nom = $donnees->nom;
+                $prenom = $donnees->prenom;
+                $poste = $donnees->poste;
+                $archive = $donnees->archive;
+                $salaire = $donnees->salaire ; 
+                $select_c = DataBase::connect()->query("select * from conge where id_personnel='$id_personnel'");
+                $c = 0;
+                if ($archive == 0) {
+                    echo "<tr>";
+                    echo "<td>";
+                    echo $id_personnel;
+                    echo "</td>";
+                    echo "<td>";
+                    echo $nom . " " . $prenom;
+                    echo "</td>";
+                    echo "<td>";
+                    echo $salaire;
+                    echo "</td>";
+                    echo "<td>";
+                echo "<a href='modifier_salaire.php?id=$id_personnel'>";
+                echo " <img src='img/modif.jpg' width='30' height='30'></img> </a>";
+                echo "</td>";
+
+                    echo "</tr>";
+                }
+            }
+            echo "</table>";
+        } else {
+            echo "<br><br><center><h3>No result</center></h3>";
+        }
+    }
     public function total_personnel() {
         $select = DataBase::connect()->query("select * from personnel where archive=0  ORDER BY id_personnel DESC");
 

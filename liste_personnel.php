@@ -6,7 +6,7 @@ include('header.php') ;
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><span class="glyphicon glyphicon-home"></span></a></li>
-				<li class="active">Liste personnel</li>
+				<li class="active">Staff management</li>
 			</ol>
 		</div><!--/.row-->
 		
@@ -29,7 +29,7 @@ include('header.php') ;
 							echo $nbr;
 							?>
 							</div>
-							<div class="text-muted">Personnel</div>
+							<div class="text-muted">Staff</div>
 						</div>
 					</div>
 				</div>
@@ -49,7 +49,7 @@ include('header.php') ;
 							echo $nbr_c;
 							?>
 							</div>
-							<div class="text-muted"> en congé</div>
+							<div class="text-muted"> Staff leaves</div>
 						</div>
 					</div>
 				</div>
@@ -70,7 +70,7 @@ include('header.php') ;
 							echo $nbr_c;
 							?>
 							</div>
-							<div class="text-muted"> en archive</div>
+							<div class="text-muted">On archive</div>
 						</div>
 					</div>
 				</div>
@@ -95,7 +95,7 @@ include('header.php') ;
  <br>
  <form class="form-horizontal" id="recherche" role="form" method="post">
 		<div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Chercher personnel</label>
+      <label for="firstname" class="col-sm-2 control-label">Staff search</label>
       <div class="col-sm-9">
          <input type="text" class="form-control" id="personnel" name="personnel" placeholder="">
       <span class="error"></span>
@@ -111,7 +111,7 @@ include('header.php') ;
 		<table class="table table-striped table-bordered" id="tab_s">
 		<thead>
 		<tr>
-		<th>Matricule</th><th>Nom & Prenom</th><th>Poste</th><th></th><th></th><th></th><th></th> 
+		<th>Registration number</th><th>Name</th><th>Work position</th><th></th><th></th><th></th><th></th> 
 		</thead>
 		<tbody>
 		<?php
